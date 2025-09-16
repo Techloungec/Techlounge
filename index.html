@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>TechLounge - Internetcafé</title>
-  <link rel="icon"  href="/icon.png" type="image/png">
+  <link rel="icon" href="/icon.png" type="image/png" />
   <style>
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -80,7 +80,8 @@
       margin-top: 1rem;
     }
 
-    th, td {
+    th,
+    td {
       padding: 0.75rem 1rem;
       border-bottom: 1px solid #d8b4fe;
       text-align: left;
@@ -138,13 +139,25 @@
         Zocken oder einfach zum Chillen.
       </p>
     </section>
+
+    <section>
+      <h2>Warum uns?</h2>
+      <p>
+        Bei uns findest du nicht nur blitzschnelles Internet und top ausgestattete PCs, sondern auch eine entspannte Atmosphäre, 
+        in der du dich sofort wohlfühlen kannst. Egal, ob du einen schnellen Kaffee beim Zocken brauchst oder einfach in guter Gesellschaft abhängen möchtest – die TechLounge ist der perfekte Ort dafür.
+      </p>
+      <p>
+        Unser Team ist immer freundlich und hilfsbereit, damit dein Besuch bei uns so angenehm wie möglich wird. Komm vorbei und erlebe selbst, warum die TechLounge mehr als nur ein Internetcafé ist!
+      </p>
+    </section>
+
     <section>
       <div class="tabs">
         <div class="tab active" data-tab="preise">Preise</div>
         <div class="tab" data-tab="standort">Standort & Öffnungszeiten</div>
         <div class="tab" data-tab="kontakt">Kontakt</div>
       </div>
-      <div id="preise" class="tab-content">
+      <div id="preise" class="tab-content" style="display: block;">
         <table>
           <thead>
             <tr>
@@ -176,7 +189,7 @@
           </tbody>
         </table>
       </div>
-      <div id="standort" class="tab-content" style="display:none;">
+      <div id="standort" class="tab-content" style="display: none;">
         <p><strong>Adresse:</strong> Wiessenstraße 10, 29221 Celle</p>
         <p>
           <strong>Öffnungszeiten:</strong><br />
@@ -192,11 +205,10 @@
             allowfullscreen=""
             loading="lazy"
             referrerpolicy="no-referrer-when-downgrade"
-          >
-          </iframe>
+          ></iframe>
         </div>
       </div>
-      <div id="kontakt" class="tab-content" style="display:none;">
+      <div id="kontakt" class="tab-content" style="display: none;">
         <p>Telefon: 0123 456789<br />Email: info@techlounge.de</p>
       </div>
     </section>
@@ -208,10 +220,10 @@
     const tabs = document.querySelectorAll('.tab');
     const contents = document.querySelectorAll('.tab-content');
 
-    tabs.forEach(tab => {
+    tabs.forEach((tab) => {
       tab.addEventListener('click', () => {
-        tabs.forEach(t => t.classList.remove('active'));
-        contents.forEach(c => (c.style.display = 'none'));
+        tabs.forEach((t) => t.classList.remove('active'));
+        contents.forEach((c) => (c.style.display = 'none'));
 
         tab.classList.add('active');
         document.getElementById(tab.dataset.tab).style.display = 'block';
