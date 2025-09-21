@@ -1,170 +1,148 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>TechLounge - Internetcafé</title>
-  <link rel="icon" href="/icon.png" type="image/png" />
-  <style>
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      margin: 0;
-      background-color: #faf5ff;
-      color: #4b0082;
-    }
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>TechLounge - Internetcafé</title>
+<link rel="icon" href="/icon.png" type="image/png">
+<style>
+  :root{
+    --accent1:#5a00c8;
+    --accent2:#320062;
+    --dark-bg:#0e0e13;
+    --glass:rgba(255,255,255,0.05);
+  }
+  body{
+    margin:0;
+    font-family:"Inter", Arial, sans-serif;
+    background:linear-gradient(180deg,#0e0e13 0%, #1c1c24 100%);
+    color:#eee;
+  }
+  .container{max-width:1100px;margin:0 auto;padding:20px;}
 
-    header {
-      background-color: #6a0dad;
-      color: #e9d8fd;
-      padding: 2rem 1rem;
-      text-align: center;
-    }
+  
+  .banner{
+    background:linear-gradient(90deg,var(--accent1),var(--accent2));
+    padding:16px;
+    text-align:center;
+    border-radius:0 0 14px 14px;
+    color:#fff;
+    font-weight:600;
+    box-shadow:0 6px 20px rgba(0,0,0,0.45);
+  
+    position: relative;}
+  .banner small{display:block;margin-top:6px;font-weight:400;color:#f0f0f0;}
 
-    header h1 {
-      margin: 0;
-      font-size: 2.5rem;
-      letter-spacing: 2px;
-    }
+  
+  header{margin:28px 0 20px;}
+  header h1{margin:0;font-size:28px;color:var(--accent1);}
+  header p{margin:4px 0 0;color:#aaa;font-size:15px;}
+  nav{margin-top:14px;display:flex;gap:10px;flex-wrap:wrap;}
+  nav a{
+    background:var(--accent1);
+    padding:8px 14px;
+    border-radius:6px;
+    text-decoration:none;
+    color:#fff;
+    font-weight:600;
+    transition:0.25s;
+  }
+  nav a:hover{background:var(--accent2);}
 
-    header p {
-      margin: 0.5rem 0 0;
-      font-size: 1.2rem;
-      font-style: italic;
-      color: #d8b4fe;
-    }
+  .panel{
+    background:var(--glass);
+    border-radius:12px;
+    padding:20px;
+    margin-bottom:22px;
+    border:1px solid rgba(255,255,255,0.08);
+    box-shadow:0 10px 24px rgba(0,0,0,0.5);
+  }
+  .panel h2,.panel h3{margin-top:0;color:#fff;}
 
-    main {
-      max-width: 900px;
-      margin: 2rem auto;
-      padding: 0 1rem;
-    }
+  .tabs{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap;}
+  .tabs button{
+    background:var(--glass);
+    border:none;
+    border-radius:6px;
+    padding:8px 14px;
+    font-weight:600;
+    color:#ccc;
+    cursor:pointer;
+  }
+  .tabs button.active{background:var(--accent1);color:#fff;}
+  .content-block{display:none;}
+  .content-block.active{display:block;}
 
-    section {
-      margin-bottom: 3rem;
-    }
+  table{width:100%;border-collapse:collapse;margin-top:12px;}
+  th,td{padding:8px;border-bottom:1px solid rgba(255,255,255,0.08);}
+  th{background:rgba(255,255,255,0.06);color:#ddd;}
+  td.price{text-align:right;color:var(--accent1);font-weight:600;}
 
-    h2 {
-      border-bottom: 3px solid #6a0dad;
-      padding-bottom: 0.3rem;
-      margin-bottom: 1rem;
-      color: #7c3aed;
-    }
+  .details-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+    gap:10px;
+    margin-top:18px;
+  }
+  .badge{
+    background:var(--glass);
+    padding:12px;
+    border-radius:8px;
+    text-align:center;
+    font-size:14px;
+    color:#ddd;
+    border:1px solid rgba(255,255,255,0.06);
+  }
+  .badge strong{display:block;color:#fff;font-size:15px;margin-bottom:4px;}
 
-    .tabs {
-      display: flex;
-      border-bottom: 2px solid #7c3aed;
-      margin-bottom: 1rem;
-    }
+  footer{margin:30px 0 0;color:#777;font-size:13px;text-align:center;}
 
-    .tab {
-      padding: 0.75rem 1.5rem;
-      cursor: pointer;
-      color: #6a0dad;
-      border: 2px solid transparent;
-      border-bottom: none;
-      font-weight: bold;
-      transition: background-color 0.3s, border-color 0.3s;
-    }
+  #countdown {
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 14px;
+    color: #f0f0f0;
+    font-weight: 500;
+  }
 
-    .tab.active {
-      background-color: #7c3aed;
-      color: white;
-      border-color: #7c3aed #7c3aed white;
-      border-bottom: 2px solid white;
-      border-radius: 5px 5px 0 0;
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 1rem;
-    }
-
-    th,
-    td {
-      padding: 0.75rem 1rem;
-      border-bottom: 1px solid #d8b4fe;
-      text-align: left;
-    }
-
-    th {
-      background-color: #d8b4fe;
-      color: #4b0082;
-    }
-
-    td.price {
-      text-align: right;
-      font-weight: bold;
-      color: #6a0dad;
-    }
-
-    footer {
-      background-color: #4b0082;
-      color: #d8b4fe;
-      text-align: center;
-      padding: 1rem;
-      font-size: 0.9rem;
-    }
-
-    @media (max-width: 600px) {
-      header h1 {
-        font-size: 2rem;
-      }
-
-      main {
-        margin: 1rem;
-      }
-
-      .tabs {
-        flex-direction: column;
-      }
-
-      .tab {
-        margin-bottom: 0.5rem;
-      }
-    }
-  </style>
+</style>
 </head>
 <body>
-  <header>
-    <h1>TechLounge</h1>
-    <p>Dein moderner Treffpunkt für Internet, Gaming & gute Zeiten</p>
-  </header>
-  <main>
-    <section>
+  <div class="banner">
+    Willkommen in der TechLounge, Dein moderner Hotspot in Celle
+    <div id="countdown"></div>
+  </div>
+
+  <div class="container">
+    <header>
+      <h1>TechLounge</h1>
+      <p>Schnelles Internet - Gaming - Allgemeiner Treffpunkt</p>
+      <nav>
+        <a href="#preise" data-tab="preise">Preise</a>
+        <a href="#standort" data-tab="standort">Standort</a>
+        <a href="#kontakt" data-tab="kontakt">Kontakt</a>
+      </nav>
+    </header>
+
+    <article class="panel">
       <h2>Über uns</h2>
       <p>
-        Die TechLounge ist dein moderner Hotspot in Celle, wo du Highspeed-Internet,
-        bequeme Sitzplätze und modernste Technik genießen kannst – egal ob zum Arbeiten,
-        Zocken oder einfach zum Chillen.
+        Die TechLounge ist ihr moderner Hotspot in Celle, Highspeed-Internet bequeme Sitzplätze und modernste Technik sind hier der Standard. 
       </p>
-    </section>
+    </article>
 
-    <section>
-      <h2>Warum uns?</h2>
-      <p>
-        Bei uns findest du nicht nur blitzschnelles Internet und top ausgestattete PCs, sondern auch eine entspannte Atmosphäre, 
-        in der du dich sofort wohlfühlen kannst. Egal, ob du einen schnellen Kaffee beim Zocken brauchst oder einfach in guter Gesellschaft abhängen möchtest – die TechLounge ist der perfekte Ort dafür.
-      </p>
-      <p>
-        Unser Team ist immer freundlich und hilfsbereit, damit dein Besuch bei uns so angenehm wie möglich wird. Komm vorbei und erlebe selbst, warum die TechLounge mehr als nur ein Internetcafé ist!
-      </p>
-    </section>
-
-    <section>
+    <section class="panel">
       <div class="tabs">
-        <div class="tab active" data-tab="preise">Preise</div>
-        <div class="tab" data-tab="standort">Standort & Öffnungszeiten</div>
-        <div class="tab" data-tab="kontakt">Kontakt</div>
+        <button class="active" data-tab="preise">Preise</button>
+        <button data-tab="standort">Standort</button>
+        <button data-tab="kontakt">Kontakt</button>
       </div>
-      <div id="preise" class="tab-content" style="display: block;">
+
+      <div id="preise" class="content-block active">
         <table>
-          <thead>
-            <tr>
-              <th>Leistung</th>
-              <th>Preis</th>
-            </tr>
-          </thead>
+          <thead><tr><th>Leistung</th><th>Preis</th></tr></thead>
           <tbody>
             <tr><td>PC Nutzung die Stunde</td><td class="price">10,00 €</td></tr>
             <tr><td>Eigenes Gerät WLAN Nutzung</td><td class="price">5,00 €</td></tr>
@@ -189,48 +167,76 @@
           </tbody>
         </table>
       </div>
-      <div id="standort" class="tab-content" style="display: none;">
+
+      <div id="standort" class="content-block">
         <p><strong>Adresse:</strong> Wiessenstraße 10, 29221 Celle</p>
-        <p>
-          <strong>Öffnungszeiten:</strong><br />
-          Mo–Fr: 10:00–22:00 Uhr<br />
-          Sa–So: 12:00–24:00 Uhr
-        </p>
-        <div style="margin-top: 1rem;">
-          <iframe
-            src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12156.407!2d10.0847021!3d52.6083643!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47b1f6e2e4e4c2a1%3A0x123456789abcdef!2sWiessenstra%C3%9Fe%2010%2C%2029221%20Celle!5e0!3m2!1sde!2sde!4v1690000000000"
-            width="100%"
-            height="300"
-            style="border:0; border-radius: 8px;"
-            allowfullscreen=""
-            loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"
-          ></iframe>
-        </div>
+        <p><strong>Öffnungszeiten:</strong><br/>Mo–Fr: 10:00–22:00 Uhr<br/>Sa–So: 12:00–24:00 Uhr</p>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12156.407!2d10.0847021!3d52.6083643!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47b1f6e2e4e4c2a1%3A0x123456789abcdef!2sWiessenstra%C3%9Fe%2010%2C%2029221%20Celle!5e0!3m2!1sde!2sde!4v1690000000000"
+                width="100%" height="250" style="border:0;border-radius:8px;" allowfullscreen="" loading="lazy"></iframe>
       </div>
-      <div id="kontakt" class="tab-content" style="display: none;">
-        <p>Telefon: 0123 456789<br />Email: info@techlounge.de</p>
+
+      <div id="kontakt" class="content-block">
+        <p>Telefon: 0123 456789<br/>Email: info@techlounge.de</p>
       </div>
     </section>
-  </main>
-  <footer>
-    &copy; 2025 TechLounge - Alle Rechte vorbehalten
-  </footer>
+
+    <section class="details-grid">
+      <div class="badge"><strong>Adresse</strong>Wiessenstraße 10, 29221 Celle</div>
+      <div class="badge"><strong>Telefon</strong>0123 456789</div>
+      <div class="badge"><strong>Email</strong>info@techlounge.de</div>
+      <div class="badge"><strong>WLAN</strong>TechLounge_Gast</div>
+    </section>
+
+    <footer>
+      <p>© 2025 TechLounge — Alle Rechte vorbehalten</p>
+    </footer>
+  </div>
+
+  
   <script>
-    const tabs = document.querySelectorAll('.tab');
-    const contents = document.querySelectorAll('.tab-content');
-
-    tabs.forEach((tab) => {
-      tab.addEventListener('click', () => {
-        tabs.forEach((t) => t.classList.remove('active'));
-        contents.forEach((c) => (c.style.display = 'none'));
-
-        tab.classList.add('active');
-        document.getElementById(tab.dataset.tab).style.display = 'block';
+    const tabButtons = document.querySelectorAll('.tabs button');
+    const blocks = document.querySelectorAll('.content-block');
+    tabButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        tabButtons.forEach(b => b.classList.remove('active'));
+        blocks.forEach(c => c.classList.remove('active'));
+        btn.classList.add('active');
+        document.getElementById(btn.dataset.tab).classList.add('active');
       });
     });
+
+    
+    function getNextSaturday() {
+      const now = new Date();
+      const dayOfWeek = now.getDay(); 
+      const daysUntilSaturday = (6 - dayOfWeek + 7) % 7 || 7;
+      const nextSaturday = new Date(now);
+      nextSaturday.setDate(now.getDate() + daysUntilSaturday);
+      nextSaturday.setHours(19, 0, 0, 0); 
+      return nextSaturday;
+    }
+
+    function updateCountdown() {
+      const now = new Date();
+      const target = getNextSaturday();
+      const diff = target - now;
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((diff / (1000 * 60)) % 60);
+      const seconds = Math.floor((diff / 1000) % 60);
+
+      document.getElementById("countdown").textContent =
+        `Nächstes Event: ${days}T ${hours}h ${minutes}m ${seconds}s (Samstag 19:00)`;
+
+      setTimeout(updateCountdown, 1000);
+    }
+
+    updateCountdown();
   </script>
+
 </body>
 </html>
+
 
 
